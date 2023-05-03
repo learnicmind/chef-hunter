@@ -66,7 +66,7 @@ const Blog = () => {
 
             </div>
 
-            <div className='flex ml-48 pb-4'>
+            <div className=' ml-48 pb-4'>
 
                 <button className="btn flex items-center justify-center gap-2"
                     onClick={downloadPDF}

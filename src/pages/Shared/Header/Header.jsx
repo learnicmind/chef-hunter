@@ -31,7 +31,7 @@ const Header = () => {
                     </div>
                     <div className="navbar-end flex items-center gap-2">
                         <FaRegUserCircle style={{ fontSize: '2rem' }} />
-                        <button className="btn">Login</button>
+                        <Link to='/login'><button className="btn">Login</button></Link>
                         <button className="btn">Logout</button>
                     </div>
                 </div>
