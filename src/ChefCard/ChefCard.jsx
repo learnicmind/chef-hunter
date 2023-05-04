@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaRegThumbsUp } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 const ChefCard = ({ chef }) => {
     console.log(chef);
@@ -12,9 +13,9 @@ const ChefCard = ({ chef }) => {
                 <h2 className="card-title">Chef's Name: {chef_name}</h2>
                 <p>Experience: {experience}</p>
                 <p>Number of Recipes: {total_recipe}</p>
-                <p className='inline-flex items-center gap-1'>Likes: <FaRegThumbsUp /> {likes}</p>
+                <p className='inline-flex items-center gap-1'><FaRegThumbsUp /> {likes}</p>
                 <div className="card-actions justify-end">
-                    <button className="btn btn-primary">View Recipies</button>
+                    <Link to={`/chef/${chef.id}`}><button className="btn btn-primary">View Recipies</button></Link>
                 </div>
             </div>
         </div>
