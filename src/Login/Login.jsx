@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
+
     const { loginUser } = useContext(AuthContext);
-    console.log(loginUser);
     const navigate = useNavigate();
     let location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -17,13 +17,11 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        console.log(email, password);
-
         loginUser(email, password)
             .then(result => {
                 const loggedUser = result.user;
-                console.log(loggedUser);
                 navigate(from, { replace: true })
+                event.target.reset();
             })
             .catch(error => {
                 console.log(error);
@@ -49,7 +47,7 @@ const Login = () => {
                                 </label>
                                 <input type="text" name='password' placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Don't have an account? <Link to='/register'>Register</Link></a>
+                                    <p className="label-text-alt link link-hover">Don't have an account? <Link to='/register'>Register</Link></p>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
