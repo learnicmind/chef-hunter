@@ -20,13 +20,14 @@ const Footer = () => {
                 </div>
                 <div>
                     <span className="footer-title">Newsletter</span>
-                    <div className="form-control w-80">
+                    <div className="form-control w-60 md:w-80 flex flex-col">
                         <label className="label">
                             <span className="label-text">Enter your email address</span>
                         </label>
+                        
                         <div className="relative">
                             <input type="text" placeholder="username@site.com" className="input input-bordered  md:w-full pr-16" />
-                            <button className="btn btn-primary absolute top-0 right-0 rounded-l-none bg-slate-500">Subscribe</button>
+                            <button className="btn ml-24 rounded mt-2 bg-slate-500 ">Subscribe</button>
                         </div>
                     </div>
                 </div>

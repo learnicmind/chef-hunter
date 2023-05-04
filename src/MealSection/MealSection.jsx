@@ -3,7 +3,7 @@ import React from 'react';
 const MealSection = () => {
     return (
         <section className="py-8 lg:py-16 w-9/12 mx-auto">
-            <h2 className='text-center text-4xl font-bold text-gray-800 md:pb-10'>A Culture of Collaboration: How We Work</h2>
+            <h2 className='text-center text-4xl font-bold text-gray-800 md:pb-10 py-4'>A Culture of Collaboration: How We Work</h2>
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row">
                 <div className="lg:w-1/2 mb-8 lg:mb-0">
                     <img src='https://i.ibb.co/3STyv5f/c3.jpg' alt="Delicious meal" className="w-full h-full object-cover rounded-lg shadow-lg" />

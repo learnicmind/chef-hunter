@@ -65,7 +65,7 @@ const Register = () => {
                             </label>
                             <input type="text" name='password' placeholder="password" required className="input input-bordered" />
                             <label className="label">
-                                <a href="#" className="label-text-alt link link-hover">Already have an Account? <Link to='/login'>Login</Link></a>
+                                <p href="#" className="label-text-alt link link-hover">Already have an Account? <Link to='/login'>Login</Link></p>
                             </label>
                         </div>
                         <p className='text-red-500'>{error}</p>

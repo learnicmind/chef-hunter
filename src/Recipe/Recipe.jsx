@@ -1,14 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { FaHeart, FaThumbsUp } from 'react-icons/fa';
 import Recipe1 from './Recipe1';
 import Recipe2 from './Recipe2';
 import Recipe3 from './Recipe3';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Recipe = () => {
 
     const recipes = useLoaderData();
     const { chef_name, experience, likes, total_recipe, recipe, banner_image, chef_bio } = recipes;
+
+    const [fav, setFav] = useState(false)
+    const handleToast = () => {
+        toast('Recipe Added to favorite')
+    }
 
     return (
         <div className='text-black w-9/12  mx-auto px-4 py-20 bg-gray-200'>
@@ -22,7 +29,7 @@ const Recipe = () => {
                 </div>
                 <div className=' '>
                     <p className='flex items-center gap-2 '><FaThumbsUp className='text-blue-700' /> {likes}</p>
-                    
+
                 </div>
             </div>
 
@@ -45,14 +52,17 @@ const Recipe = () => {
                             <h2 className='text-lg font-semibold'>Ingredients</h2>
                             {
                                 recipe.recipe_1.ingredients.map(ingredient => {
-                                    return <Recipe1 key={recipe.recipe_1.id} ingredient={ingredient}></Recipe1>
+                                    return <div>
+                                        <Recipe1 key={recipe.recipe_1.id} ingredient={ingredient}></Recipe1>
+                                        <ToastContainer />
+                                    </div>
                                 })
                             }
                         </div>
                     </div>
 
-                    <div className='flex justify-center'>
-                        <button className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
+                    <div onClick={() => setFav(true)} className='flex justify-center'>
+                        <button onClick={handleToast} disabled={fav} className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
                     </div>
                 </div>
 
@@ -74,14 +84,17 @@ const Recipe = () => {
                             <h2 className='text-lg font-semibold'>Ingredients</h2>
                             {
                                 recipe.recipe_2.ingredients.map(ingredient => {
-                                    return <Recipe2 key={recipe.recipe_2.id} ingredient={ingredient}></Recipe2>
+                                    return <div>
+                                        <Recipe2 key={recipe.recipe_2.id} ingredient={ingredient}></Recipe2>
+                                        <ToastContainer />
+                                    </div>
                                 })
                             }
                         </div>
                     </div>
 
-                    <div className='flex justify-center'>
-                        <button className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
+                    <div onClick={() => setFav(true)} className='flex justify-center'>
+                        <button onClick={handleToast} disabled={fav} className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
                     </div>
                 </div>
 
@@ -103,20 +116,23 @@ const Recipe = () => {
                             <h2 className='text-lg font-semibold'>Ingredients</h2>
                             {
                                 recipe.recipe_3.ingredients.map(ingredient => {
-                                    return <Recipe3 key={recipe.recipe_1.id} ingredient={ingredient}></Recipe3>
+                                    return <div>
+                                        <Recipe3 key={recipe.recipe_1.id} ingredient={ingredient}></Recipe3>
+                                        <ToastContainer />
+                                    </div>
                                 })
                             }
                         </div>
                     </div>
 
-                    <div className='flex justify-center'>
-                        <button className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
+                    <div onClick={() => setFav(true)}  className='flex justify-center'>
+                        <button onClick={handleToast} disabled={fav} className='flex items-center gap-2 mb-10 border py-2 px-3 rounded'><FaHeart className='text-2xl' />Add to Favorite</button>
                     </div>
                 </div>
 
 
 
-                
+
             </div>
         </div>
     );

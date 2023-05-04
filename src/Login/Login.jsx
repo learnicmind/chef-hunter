@@ -5,7 +5,8 @@ import { AuthContext } from '../Provider/AuthProvider';
 
 const Login = () => {
 
-    const { loginUser } = useContext(AuthContext);
+
+    const {loginUser, handleGoogleSignIn, handleGithubSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
     let location = useLocation();
     const from = location.state?.from?.pathname || '/'
@@ -28,6 +29,15 @@ const Login = () => {
             })
 
     }
+
+    const handleGoogle = () =>{
+        handleGoogleSignIn();
+    }
+
+    const handleGitLogin = () =>{
+        handleGithubSignIn();
+    }
+
     return (
         <div>
             <div className="hero min-h-screen bg-base-200">
@@ -62,9 +72,9 @@ const Login = () => {
             </div>
             <div className='pb-10 bg-base-200 flex items-center justify-center'>
                 <div className='block'>
-                    <button className="btn btn-wide flex gap-2 "> <FaGoogle className='text-lg' />Login with Google</button>
+                    <button onClick={handleGoogle} className="btn btn-wide flex gap-2 "> <FaGoogle className='text-lg' />Login with Google</button>
                     <br />
-                    <button className="btn btn-wide flex gap-2"><FaGithub className='text-lg' />Login with Github</button>
+                    <button onClick={handleGitLogin} className="btn btn-wide flex gap-2"><FaGithub className='text-lg' />Login with Github</button>
                 </div>
             </div>
         </div>

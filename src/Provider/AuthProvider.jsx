@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import app from '../firebase.config';
@@ -7,37 +7,56 @@ import app from '../firebase.config';
 export const AuthContext = createContext(null)
 
 const auth = getAuth(app)
+const googleProvider = new GoogleAuthProvider()
+const gitProvider = new GithubAuthProvider()
 
 const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true);
 
-    const createUser = (email, password) =>{
+    const createUser = (email, password) => {
         setLoading(true)
         return createUserWithEmailAndPassword(auth, email, password)
     }
 
-    const loginUser = (email, password) =>{
+    const loginUser = (email, password) => {
         setLoading(true)
         return signInWithEmailAndPassword(auth, email, password)
     }
 
-    const logOut = () =>{
+    const logOut = () => {
         setLoading(true)
         signOut(auth);
     }
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error))
+    }
 
-    useEffect(() =>{
-        const unsubscribe = onAuthStateChanged(auth, loggedUser =>{
-            
+    const handleGithubSignIn = () => {
+        signInWithPopup(auth, gitProvider)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(error => console.log(error))
+    }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, loggedUser => {
+
             setUser(loggedUser);
             setLoading(false)
         })
 
-        return () =>{
+        return () => {
             return unsubscribe();
         }
-    },[])
+    }, [])
 
     const authInfo = {
         user,
@@ -45,6 +64,8 @@ const AuthProvider = ({ children }) => {
         createUser,
         loginUser,
         logOut,
+        handleGoogleSignIn,
+        handleGithubSignIn
     }
 
     return (

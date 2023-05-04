@@ -6,8 +6,13 @@ import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Recipe from "../Recipe/Recipe";
 import PrivateRoute from "./PrivateRoute";
+import Error from "../ErrorPage/Error";
 
 const router = createBrowserRouter([
+    {
+        path: '*',
+        element: <Error></Error>
+    },
     {
         path: '/',
         element: <Main></Main>,
