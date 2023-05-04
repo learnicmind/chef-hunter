@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <div className='bg-slate-200'>
             <div className=''>
-                <div className="navbar mx-auto w-9/12 text-gray-700">
+                <div className="navbar mx-auto md:w-9/12 text-gray-700">
                     <div className="navbar-start">
                         <div className="dropdown">
                             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -18,8 +18,8 @@ const Header = () => {
                                 <Link to='/blog' className='text-2xl font-semibold'>Blog</Link>
                             </ul>
                         </div>
-                        <Link to='/'>
-                        <a className="btn btn-ghost normal-case font-semibold text-3xl">Cookz<span className='text-4xl text-slate-900'>Corner</span></a>
+                        <Link to='/' className="btn btn-ghost normal-case font-semibold text-xl md:text-3xl">
+                        Cookz<span className='text-2xl md:text-4xl text-slate-900'>Corner</span>
                         </Link>
                     </div>
                     <div className="navbar-center hidden lg:flex">
