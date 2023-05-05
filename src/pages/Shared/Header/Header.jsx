@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../../Provider/AuthProvider';
 
 const Header = () => {
@@ -31,14 +31,15 @@ const Header = () => {
                     </div>
                     <div className="navbar-center hidden lg:flex">
                         <ul className="menu menu-horizontal flex gap-2">
-                            <Link to='/' className='text-xl font-semibold'>Home</Link>
 
-                            <Link to='/blog' className='text-xl font-semibold'>Blog</Link>
+                            <NavLink to="/" className={({ isActive }) => isActive ? "text-red-600" : ""} >Home</NavLink>
+                            <NavLink to="/blog" className={({ isActive }) => isActive ? "text-red-600" : ""} >Blog</NavLink>
+
                         </ul>
                     </div>
                     <div className="navbar-end flex items-center gap-2">
-                    {
-                        user && <img className='w-10 rounded-full' src='https://media.istockphoto.com/id/1372641621/photo/portrait-of-a-businessman-on-gray-background.jpg?b=1&s=170667a&w=0&k=20&c=Yyi5slaeNpq_HPcfgy1305VpJSwerPm_s7mTz_bBk6c=' />
+                        {
+                            user && <img title={user?.displayName} className='w-10 rounded-full' src='https://media.istockphoto.com/id/1372641621/photo/portrait-of-a-businessman-on-gray-background.jpg?b=1&s=170667a&w=0&k=20&c=Yyi5slaeNpq_HPcfgy1305VpJSwerPm_s7mTz_bBk6c=' />
                         }
                         {
                             user ?

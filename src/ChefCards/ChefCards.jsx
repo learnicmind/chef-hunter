@@ -6,7 +6,7 @@ const ChefCards = () => {
     const [chefs, setChefs] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/chefdetails')
+        fetch('https://chef-hunter-server-learnicmind.vercel.app/chefdetails')
         .then(res => res.json())
         .then(data => setChefs(data))
         .catch(error => {

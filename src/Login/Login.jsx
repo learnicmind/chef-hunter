@@ -8,6 +8,8 @@ const Login = () => {
 
     const {loginUser, handleGoogleSignIn, handleGithubSignIn} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [error, setError] = useState('');
+
     let location = useLocation();
     const from = location.state?.from?.pathname || '/'
 
@@ -23,19 +25,23 @@ const Login = () => {
                 const loggedUser = result.user;
                 navigate(from, { replace: true })
                 event.target.reset();
+                setError('')
             })
             .catch(error => {
                 console.log(error);
+                setError(error.message)
             })
 
     }
 
     const handleGoogle = () =>{
         handleGoogleSignIn();
+        setError('')
     }
 
     const handleGitLogin = () =>{
         handleGithubSignIn();
+        setError('');
     }
 
     return (
@@ -55,7 +61,7 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="text" name='password' placeholder="password" className="input input-bordered" />
+                                <input type="password" name='password' placeholder="password" className="input input-bordered" />
                                 <label className="label">
                                     <p className="label-text-alt link link-hover">Don't have an account? <Link to='/register'>Register</Link></p>
                                 </label>
@@ -63,7 +69,9 @@ const Login = () => {
                             <div className="form-control mt-6">
                                 <button className="btn ">Login</button>
                             </div>
+                            <p className='text-red-600'>{error}</p>
                         </form>
+                        
                     </div>
 
 

@@ -18,7 +18,24 @@ const Register = () => {
         const photo = form.photo.value;
         const email = form.email.value;
         const password = form.password.value;
-
+        setError('')
+        setSuccess('')
+        if(!/(?=.*[A-Z])/.test(password)){
+            setError('Please enter at least one uppercase letter!');
+            return;
+        }
+        else if(!/(?=.*?[0-9])/.test(password)){
+            setError('Please enter at least one number!');
+            return;
+        }
+        else if(password.length < 6){
+            setError('Password should have at least 6 character!');
+            return;
+        }
+        else{
+            setSuccess('Account created Successfully!');
+            form.reset();
+        }
         console.log(name, photo, email, password);
         createUser(email, password)
             .then(result => {
@@ -63,7 +80,7 @@ const Register = () => {
                             <label className="label">
                                 <span className="label-text">Password</span>
                             </label>
-                            <input type="text" name='password' placeholder="password" required className="input input-bordered" />
+                            <input type="password" name='password' placeholder="password" required className="input input-bordered" />
                             <label className="label">
                                 <p href="#" className="label-text-alt link link-hover">Already have an Account? <Link to='/login'>Login</Link></p>
                             </label>
